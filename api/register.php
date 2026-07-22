@@ -35,6 +35,12 @@ try {
 
     $db = getDB();
 
+    $adminStmt = $db->prepare("SELECT id FROM admin_users WHERE username = ? OR email = ? OR username = ? OR email = ? LIMIT 1");
+    $adminStmt->execute([$username, $username, $email, $email]);
+    if ($adminStmt->fetch()) {
+        jsonResponse(['error' => 'This username or email is reserved for administrator accounts'], 409);
+    }
+
     $stmt = $db->prepare("SELECT id FROM users WHERE email = ? OR username = ? OR national_id = ?");
     $stmt->execute([$email, $username, $nationalId]);
     if ($stmt->fetch()) {
@@ -64,13 +70,13 @@ try {
     }
 
     $userId = $db->lastInsertId();
-    $token = generateToken(['user_id' => $userId, 'type' => 'student']);
+    $token = generateToken(['user_id' => (int)$userId, 'type' => 'student']);
 
     jsonResponse([
         'success' => true,
         'message' => 'Registration successful',
         'user' => [
-            'id' => $userId,
+            'id' => (int)$userId,
             'full_name' => $fullName,
             'email' => $email,
             'username' => $username,

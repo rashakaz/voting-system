@@ -144,12 +144,32 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 5000);
   };
 
+  const xamppAppBase = 'http://localhost/umma-voting/';
+
+  function shouldUseXamppBase() {
+    return window.location.protocol === 'file:' ||
+      window.location.pathname.toLowerCase().indexOf('/umma-voting/') === -1;
+  }
+
+  function appUrl(path) {
+    return shouldUseXamppBase() ? xamppAppBase + path : path;
+  }
+
+  function apiUrl(url) {
+    if (/^https?:\/\//i.test(url) || url.indexOf('api/') !== 0) {
+      return url;
+    }
+
+    return appUrl(url);
+  }
+
   async function requestJson(url, options) {
     let response;
+    const resolvedUrl = apiUrl(url);
     try {
-      response = await fetch(url, options || {});
+      response = await fetch(resolvedUrl, options || {});
     } catch (error) {
-      throw new Error('Cannot reach the server. Open the site through http://localhost/umma-voting and make sure Apache is running.');
+      throw new Error('The service is temporarily unavailable. Please try again later.');
     }
 
     const responseText = await response.text();
@@ -172,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (!responseText || !Object.keys(payload).length) {
-      throw new Error('Invalid response from server. Open the site through XAMPP, not Live Server or a file path.');
+      throw new Error('The service returned an invalid response. Please try again later.');
     }
 
     return payload;
@@ -284,7 +304,7 @@ document.addEventListener('DOMContentLoaded', function () {
             localStorage.removeItem('currentUser');
             showToast('success', 'Admin Login', 'Welcome back, administrator.');
             setTimeout(function () {
-              window.location.href = 'admin.html';
+              window.location.href = appUrl('admin.html');
             }, 700);
           } else {
             localStorage.setItem('userToken', result.token);
@@ -294,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function () {
             localStorage.removeItem('adminUser');
             showToast('success', 'Login Successful', 'Redirecting to your dashboard.');
             setTimeout(function () {
-              window.location.href = 'dashboard.html';
+              window.location.href = appUrl('dashboard.html');
             }, 700);
           }
         } catch (error) {
@@ -326,8 +346,8 @@ document.addEventListener('DOMContentLoaded', function () {
         { id: 'fullname', errorId: 'fullnameError', validate: function (v) { return v.trim().length >= 3; } },
         { id: 'nationalId', errorId: 'nationalIdError', validate: function (v) { return v.trim().length >= 5; } },
         { id: 'phone', errorId: 'phoneError', validate: function (v) { return v.trim().length >= 8; } },
-        { id: 'email', errorId: 'emailError', validate: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()); } },
-        { id: 'regUsername', errorId: 'regUsernameError', validate: function (v) { return v.trim().length >= 4; } },
+        { id: 'email', errorId: 'emailError', validate: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) && !/^admin@gmail\.com$/i.test(v.trim()); } },
+        { id: 'regUsername', errorId: 'regUsernameError', validate: function (v) { return v.trim().length >= 4 && !/^(admin|administrator)$/i.test(v.trim()); } },
         { id: 'regPassword', errorId: 'regPasswordError', validate: function (v) { return v.trim().length >= 6; } }
       ];
 
@@ -381,7 +401,7 @@ document.addEventListener('DOMContentLoaded', function () {
           localStorage.removeItem('adminUser');
           showToast('success', 'Registration Successful', 'Your account has been saved. Redirecting to your dashboard.');
           setTimeout(function () {
-            window.location.href = 'dashboard.html';
+            window.location.href = appUrl('dashboard.html');
           }, 900);
         } catch (error) {
           showToast('error', 'Registration Failed', error.message);
