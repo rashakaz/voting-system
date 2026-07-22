@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Election Management | UMMA Voting System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-body">
+
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <img src="images/logo.jpg" alt="UMMA Logo" class="nav-logo">
+        <span>UMMA Voting System</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="admin-layout">
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="sidebar-header">
+        <h3><i class="fas fa-graduation-cap"></i> UMMA Admin</h3>
+        <p>Student Election Management</p>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="admin.html"><i class="fas fa-dashboard"></i> Dashboard</a>
+        <a href="admin-candidates.html"><i class="fas fa-users"></i> Candidates</a>
+        <a href="admin-voters.html"><i class="fas fa-person-booth"></i> Student Voters</a>
+        <a href="admin-election.html" class="active"><i class="fas fa-vote-yea"></i> Election</a>
+        <a href="results.html"><i class="fas fa-chart-bar"></i> Results</a>
+        <a href="admin-reports.html"><i class="fas fa-file-alt"></i> Reports</a>
+        <a href="index.html" style="color: var(--danger);"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </nav>
+    </aside>
+
+    <main class="admin-main">
+      <div class="admin-main-header">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+          <i class="fas fa-bars"></i>
+        </button>
+        <h1><i class="fas fa-vote-yea" style="color:var(--accent);"></i> Election Management</h1>
+      </div>
+
+      <div class="admin-grid">
+        <div class="admin-card">
+          <h3>
+            <span><i class="fas fa-list"></i> Current Elections</span>
+            <a href="#"><i class="fas fa-plus"></i> New Election</a>
+          </h3>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Election</th>
+                  <th>Start</th>
+                  <th>End</th>
+                  <th>Voters</th>
+                  <th>Turnout</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>SRC President 2026</td>
+                  <td>Jun 20, 2026</td>
+                  <td>Jul 10, 2026</td>
+                  <td>1,200</td>
+                  <td>64.3%</td>
+                  <td><span class="badge badge-success">Active</span></td>
+                  <td>
+                    <button class="admin-action-btn edit" style="margin-right:5px;"><i class="fas fa-pause"></i></button>
+                    <button class="admin-action-btn delete"><i class="fas fa-stop"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>SRC Council 2026</td>
+                  <td>Jun 20, 2026</td>
+                  <td>Jul 10, 2026</td>
+                  <td>1,200</td>
+                  <td>58.7%</td>
+                  <td><span class="badge badge-success">Active</span></td>
+                  <td>
+                    <button class="admin-action-btn edit" style="margin-right:5px;"><i class="fas fa-pause"></i></button>
+                    <button class="admin-action-btn delete"><i class="fas fa-stop"></i></button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>SRC Election 2025</td>
+                  <td>Mar 10, 2025</td>
+                  <td>Apr 10, 2025</td>
+                  <td>980</td>
+                  <td>82.1%</td>
+                  <td><span class="badge badge-warning">Completed</span></td>
+                  <td>
+                    <button style="padding:6px 12px;background:var(--gray-400);color:var(--white);border:none;border-radius:var(--radius-sm);font-size:0.8rem;cursor:not-allowed;"><i class="fas fa-play"></i></button>
+                    <button style="padding:6px 12px;background:var(--gray-400);color:var(--white);border:none;border-radius:var(--radius-sm);font-size:0.8rem;cursor:not-allowed;"><i class="fas fa-trash"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h3><i class="fas fa-clock"></i> Election Timeline</h3>
+          <div style="position:relative;padding-left:30px;">
+            <div style="position:absolute;left:12px;top:0;bottom:0;width:2px;background:var(--gray-300);"></div>
+            <div style="position:relative;padding-bottom:25px;">
+              <div style="position:absolute;left:-22px;top:4px;width:14px;height:14px;background:var(--secondary);border-radius:50%;border:3px solid var(--white);box-shadow:0 0 0 2px var(--secondary);"></div>
+              <h4 style="font-size:0.95rem;color:var(--primary);">Voting Period</h4>
+              <p style="font-size:0.85rem;color:var(--gray-600);">Jun 20 - Jul 10, 2026 &middot; 21 days</p>
+              <span class="badge badge-success" style="margin-top:5px;display:inline-block;">In Progress</span>
+            </div>
+            <div style="position:relative;padding-bottom:25px;">
+              <div style="position:absolute;left:-22px;top:4px;width:14px;height:14px;background:var(--gray-400);border-radius:50%;border:3px solid var(--white);box-shadow:0 0 0 2px var(--gray-400);"></div>
+              <h4 style="font-size:0.95rem;color:var(--primary);">Registration Period</h4>
+              <p style="font-size:0.85rem;color:var(--gray-600);">May 15 - Jun 15, 2026</p>
+              <span class="badge badge-warning" style="margin-top:5px;display:inline-block;">Closed</span>
+            </div>
+            <div style="position:relative;padding-bottom:0;">
+              <div style="position:absolute;left:-22px;top:4px;width:14px;height:14px;background:var(--gray-400);border-radius:50%;border:3px solid var(--white);box-shadow:0 0 0 2px var(--gray-400);"></div>
+              <h4 style="font-size:0.95rem;color:var(--primary);">Result Declaration</h4>
+              <p style="font-size:0.85rem;color:var(--gray-600);">Jul 11, 2026</p>
+              <span class="badge badge-warning" style="margin-top:5px;display:inline-block;">Upcoming</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <h3><i class="fas fa-sliders-h"></i> Election Configuration</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;">
+          <div>
+            <label style="display:block;font-weight:500;color:var(--gray-700);margin-bottom:8px;font-size:0.9rem;">Election Title</label>
+            <input type="text" value="SRC Student Council Elections 2026" style="width:100%;padding:12px 16px;border:2px solid var(--gray-300);border-radius:var(--radius-sm);font-size:0.95rem;background:var(--gray-100);color:var(--gray-800);">
+          </div>
+          <div>
+            <label style="display:block;font-weight:500;color:var(--gray-700);margin-bottom:8px;font-size:0.9rem;">Max Votes Per Student</label>
+            <select style="width:100%;padding:12px 16px;border:2px solid var(--gray-300);border-radius:var(--radius-sm);font-size:0.95rem;background:var(--gray-100);color:var(--gray-800);">
+              <option>1</option>
+              <option>2</option>
+              <option selected>3</option>
+              <option>5</option>
+            </select>
+          </div>
+          <div>
+            <label style="display:block;font-weight:500;color:var(--gray-700);margin-bottom:8px;font-size:0.9rem;">Start Date</label>
+            <input type="date" value="2026-06-20" style="width:100%;padding:12px 16px;border:2px solid var(--gray-300);border-radius:var(--radius-sm);font-size:0.95rem;background:var(--gray-100);color:var(--gray-800);">
+          </div>
+          <div>
+            <label style="display:block;font-weight:500;color:var(--gray-700);margin-bottom:8px;font-size:0.9rem;">End Date</label>
+            <input type="date" value="2026-07-10" style="width:100%;padding:12px 16px;border:2px solid var(--gray-300);border-radius:var(--radius-sm);font-size:0.95rem;background:var(--gray-100);color:var(--gray-800);">
+          </div>
+        </div>
+        <button class="admin-btn admin-btn-primary" style="margin-top:20px;"><i class="fas fa-save"></i> Save Configuration</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

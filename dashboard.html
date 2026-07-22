@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard | UMMA Student Voting System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body.student-shell-body { background: var(--gray-100); }
+    .student-shell { min-height: 100vh; display: grid; grid-template-columns: 280px minmax(0, 1fr); }
+    .student-drawer { position: sticky; top: 0; height: 100vh; background: var(--primary-dark); color: var(--white); padding: 24px 18px; display: flex; flex-direction: column; gap: 22px; z-index: 20; }
+    .drawer-brand { display: flex; align-items: center; gap: 12px; padding: 0 8px 18px; border-bottom: 1px solid rgba(255,255,255,0.14); }
+    .drawer-brand img { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; }
+    .drawer-brand span { font-weight: 800; line-height: 1.2; }
+    .drawer-user { padding: 14px; background: rgba(255,255,255,0.08); border-radius: var(--radius-sm); }
+    .drawer-user strong { display: block; font-size: 0.98rem; }
+    .drawer-user span { display: block; margin-top: 3px; color: rgba(255,255,255,0.72); font-size: 0.82rem; word-break: break-word; }
+    .drawer-nav { display: grid; gap: 8px; }
+    .drawer-link { display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,0.82); padding: 12px 14px; border-radius: var(--radius-sm); border: none; background: transparent; width: 100%; text-align: left; cursor: pointer; font: inherit; font-weight: 600; }
+    .drawer-link:hover, .drawer-link.active { background: rgba(79,195,247,0.18); color: var(--white); }
+    .drawer-link.logout { color: #ffb4b4; margin-top: auto; }
+    .student-main { min-width: 0; }
+    .student-topbar { height: 72px; background: var(--white); border-bottom: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; position: sticky; top: 0; z-index: 10; }
+    .drawer-toggle { display: none; width: 42px; height: 42px; border: none; border-radius: var(--radius-sm); background: var(--primary); color: var(--white); font-size: 1.1rem; cursor: pointer; }
+    .student-topbar h1 { color: var(--primary); font-size: 1.35rem; margin: 0; }
+    .student-content { padding: 28px; }
+    .student-section { display: none; }
+    .student-section.active { display: block; }
+    .section-title { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; margin-bottom: 22px; }
+    .section-title h2 { color: var(--primary); font-size: 1.45rem; margin: 0 0 4px; }
+    .section-title p { margin: 0; color: var(--gray-600); }
+    .student-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
+    .student-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); padding: 20px; box-shadow: var(--shadow-sm); }
+    .metric-card { min-height: 132px; display: flex; flex-direction: column; justify-content: space-between; }
+    .metric-card .metric-icon { width: 42px; height: 42px; border-radius: var(--radius-sm); display: grid; place-items: center; background: rgba(10,42,102,0.08); color: var(--primary); }
+    .metric-value { color: var(--primary); font-size: 2rem; font-weight: 800; line-height: 1; }
+    .metric-label { color: var(--gray-600); font-size: 0.88rem; }
+    .dashboard-two-col { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(300px, 0.8fr); gap: 20px; margin-top: 20px; }
+    .candidate-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    .position-group { grid-column: 1 / -1; display: grid; gap: 14px; }
+    .position-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; background: var(--primary); color: var(--white); border-radius: var(--radius-sm); }
+    .position-heading h3 { margin: 0; font-size: 1rem; }
+    .position-heading span { color: rgba(255,255,255,0.78); font-size: 0.86rem; }
+    .candidate-mini { display: grid; gap: 12px; }
+    .candidate-mini h3 { margin: 0; color: var(--primary); font-size: 1.05rem; }
+    .candidate-mini p { margin: 0; color: var(--gray-600); font-size: 0.88rem; }
+    .result-row { display: grid; grid-template-columns: minmax(130px, 1fr) minmax(160px, 2fr) 70px; gap: 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--gray-200); }
+    .result-row:last-child { border-bottom: none; }
+    .mini-progress { height: 10px; background: var(--gray-200); border-radius: 999px; overflow: hidden; }
+    .mini-progress span { display: block; height: 100%; background: var(--accent); }
+    .profile-list { display: grid; gap: 12px; }
+    .profile-list div { display: flex; justify-content: space-between; gap: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--gray-200); }
+    .profile-list span { color: var(--gray-600); }
+    .profile-list strong { color: var(--primary); text-align: right; }
+    .dashboard-form { display: grid; gap: 14px; }
+    .dashboard-form input, .dashboard-form textarea { width: 100%; padding: 12px 14px; border: 2px solid var(--gray-300); border-radius: var(--radius-sm); background: var(--gray-100); color: var(--gray-800); font: inherit; }
+    .empty-state { color: var(--gray-600); padding: 16px; background: var(--gray-100); border-radius: var(--radius-sm); }
+    .drawer-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.38); z-index: 15; }
+
+    @media (max-width: 980px) {
+      .student-shell { display: block; }
+      .student-drawer { position: fixed; left: 0; top: 0; transform: translateX(-100%); transition: transform 0.24s ease; width: 280px; }
+      .student-drawer.open { transform: translateX(0); }
+      .drawer-backdrop.show { display: block; }
+      .drawer-toggle { display: inline-grid; place-items: center; }
+      .student-topbar { padding: 0 16px; }
+      .student-content { padding: 20px 16px; }
+      .dashboard-two-col { grid-template-columns: 1fr; }
+      .section-title { flex-direction: column; }
+    }
+
+    @media (max-width: 640px) {
+      .student-topbar h1 { font-size: 1rem; }
+      .result-row { grid-template-columns: 1fr; gap: 8px; }
+      .profile-list div { display: grid; }
+      .profile-list strong { text-align: left; }
+    }
+  </style>
+</head>
+<body class="student-shell-body">
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <div class="student-shell">
+    <aside class="student-drawer" id="studentDrawer">
+      <div class="drawer-brand">
+        <img src="images/logo.jpg" alt="UMMA Logo">
+        <span>UMMA Student<br>Voting System</span>
+      </div>
+      <div class="drawer-user">
+        <strong id="drawerName">Student</strong>
+        <span id="drawerEmail">Signed in</span>
+      </div>
+      <nav class="drawer-nav">
+        <button class="drawer-link active" data-section="overview"><i class="fas fa-gauge"></i> Overview</button>
+        <button class="drawer-link" data-section="vote"><i class="fas fa-vote-yea"></i> Vote</button>
+        <button class="drawer-link" data-section="results"><i class="fas fa-chart-bar"></i> Results</button>
+        <button class="drawer-link" data-section="profile"><i class="fas fa-user"></i> Profile</button>
+        <button class="drawer-link" data-section="help"><i class="fas fa-headset"></i> Help</button>
+      </nav>
+      <button class="drawer-link logout" id="studentLogout"><i class="fas fa-sign-out-alt"></i> Logout</button>
+    </aside>
+
+    <main class="student-main">
+      <header class="student-topbar">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <button class="drawer-toggle" id="drawerToggle" aria-label="Open dashboard menu"><i class="fas fa-bars"></i></button>
+          <h1 id="sectionHeading">Dashboard Overview</h1>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+      </header>
+
+      <div class="student-content">
+        <section class="student-section active" id="section-overview">
+          <div class="section-title">
+            <div>
+              <h2>Welcome, <span id="displayName">Student</span></h2>
+              <p>Everything you need for voting is now in this single dashboard.</p>
+            </div>
+            <button class="btn btn-primary btn-sm" data-jump="vote"><i class="fas fa-vote-yea"></i> Vote Now</button>
+          </div>
+
+          <div class="student-grid">
+            <div class="student-card metric-card">
+              <div class="metric-icon"><i class="fas fa-vote-yea"></i></div>
+              <div>
+                <div class="metric-value" id="metricElections">0</div>
+                <div class="metric-label">Active Elections</div>
+              </div>
+            </div>
+            <div class="student-card metric-card">
+              <div class="metric-icon"><i class="fas fa-users"></i></div>
+              <div>
+                <div class="metric-value" id="metricCandidates">0</div>
+                <div class="metric-label">Active Candidates</div>
+              </div>
+            </div>
+            <div class="student-card metric-card">
+              <div class="metric-icon"><i class="fas fa-chart-line"></i></div>
+              <div>
+                <div class="metric-value" id="metricTurnout">0%</div>
+                <div class="metric-label">Student Turnout</div>
+              </div>
+            </div>
+            <div class="student-card metric-card">
+              <div class="metric-icon"><i class="fas fa-clock"></i></div>
+              <div>
+                <div class="metric-value" id="metricDays">-</div>
+                <div class="metric-label">Days Remaining</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-two-col">
+            <div class="student-card">
+              <h3 style="color:var(--primary);margin-top:0;"><i class="fas fa-info-circle"></i> Current Election</h3>
+              <div id="overviewElection" class="empty-state">Loading election status...</div>
+            </div>
+            <div class="student-card">
+              <h3 style="color:var(--primary);margin-top:0;"><i class="fas fa-bell"></i> Notifications</h3>
+              <div id="overviewNotifications">
+                <div class="empty-state">Loading notifications...</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="student-section" id="section-vote">
+          <div class="section-title">
+            <div>
+              <h2>Cast Your Vote</h2>
+              <p id="voteElectionLabel">Loading active election...</p>
+            </div>
+          </div>
+          <div id="candidateList" class="candidate-list">
+            <div class="empty-state">Loading candidates...</div>
+          </div>
+        </section>
+
+        <section class="student-section" id="section-results">
+          <div class="section-title">
+            <div>
+              <h2>Election Results</h2>
+              <p id="resultsElectionLabel">Live results from the database.</p>
+            </div>
+          </div>
+          <div class="student-card">
+            <div class="student-grid" style="margin-bottom:18px;">
+              <div>
+                <div class="metric-value" id="resultsTotalVotes">0</div>
+                <div class="metric-label">Total Votes</div>
+              </div>
+              <div>
+                <div class="metric-value" id="resultsTurnout">0%</div>
+                <div class="metric-label">Turnout</div>
+              </div>
+              <div>
+                <div class="metric-value" id="resultsRegistered">0</div>
+                <div class="metric-label">Registered Students</div>
+              </div>
+            </div>
+            <div id="resultsList">
+              <div class="empty-state">Loading results...</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="student-section" id="section-profile">
+          <div class="section-title">
+            <div>
+              <h2>My Profile</h2>
+              <p>Your account details from the current session.</p>
+            </div>
+          </div>
+          <div class="dashboard-two-col">
+            <div class="student-card">
+              <h3 style="color:var(--primary);margin-top:0;"><i class="fas fa-user-circle"></i> Student Information</h3>
+              <div class="profile-list" id="profileDetails"></div>
+            </div>
+            <div class="student-card">
+              <h3 style="color:var(--primary);margin-top:0;"><i class="fas fa-shield-alt"></i> Account Status</h3>
+              <div id="profileStatus" class="empty-state">Loading status...</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="student-section" id="section-help">
+          <div class="section-title">
+            <div>
+              <h2>Help & Contact</h2>
+              <p>Send a message to the UMMA electoral office without leaving your dashboard.</p>
+            </div>
+          </div>
+          <div class="dashboard-two-col">
+            <div class="student-card">
+              <h3 style="color:var(--primary);margin-top:0;"><i class="fas fa-paper-plane"></i> Send Message</h3>
+              <form class="dashboard-form" id="dashboardContactForm">
+                <input type="text" id="dashContactName" placeholder="Full name" required>
+                <input type="email" id="dashContactEmail" placeholder="Email address" required>
+                <input type="text" id="dashContactSubject" placeholder="Subject" required>
+                <textarea id="dashContactMessage" rows="6" placeholder="Message" required></textarea>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send Message</button>
+              </form>
+            </div>
+            <div class="student-card">
+              <h3 style="color:var(--primary);margin-top:0;"><i class="fas fa-building"></i> Electoral Office</h3>
+              <p><strong>Email:</strong><br>student.elections@umma.ac.ke</p>
+              <p><strong>Phone:</strong><br>+254 746 790 207</p>
+              <p><strong>Hours:</strong><br>Mon - Fri, 8:00 AM - 5:00 PM</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="voteModal">
+    <div class="modal-content">
+      <div class="modal-icon confirm"><i class="fas fa-vote-yea"></i></div>
+      <h2>Confirm Your Vote</h2>
+      <p>You are about to vote for <strong id="candidateName">Candidate</strong>. This action cannot be undone.</p>
+      <div class="modal-actions">
+        <button class="btn btn-outline" style="color:var(--primary);border-color:var(--gray-400);" id="cancelDashboardVote">Cancel</button>
+        <button class="btn btn-primary" id="confirmDashboardVote"><i class="fas fa-check-circle"></i> Cast Vote</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script>
+    (function () {
+      var state = {
+        currentUser: {},
+        activeElection: null,
+        candidates: [],
+        userVotes: [],
+        selectedCandidate: null
+      };
+
+      function $(id) { return document.getElementById(id); }
+
+      function getUser() {
+        try {
+          return JSON.parse(localStorage.getItem('currentUser') || '{}');
+        } catch (e) {
+          return {};
+        }
+      }
+
+      function escapeHtml(value) {
+        return String(value === null || value === undefined ? '' : value).replace(/[&<>"']/g, function (char) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[char];
+        });
+      }
+
+      async function requestJson(url, options) {
+        var response = await fetch(url, options || {});
+        var payload = {};
+        try { payload = await response.json(); } catch (e) {}
+        if (!response.ok) throw new Error(payload.error || payload.message || 'Request failed');
+        return payload;
+      }
+
+      function notify(type, title, message) {
+        if (window.showToast) {
+          window.showToast(type, title, message);
+        } else {
+          alert(title + ': ' + message);
+        }
+      }
+
+      function formatDate(value) {
+        if (!value) return '-';
+        var date = new Date(String(value).replace(' ', 'T'));
+        return isNaN(date.getTime()) ? value : date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+      }
+
+      function switchSection(section) {
+        document.querySelectorAll('.student-section').forEach(function (el) {
+          el.classList.toggle('active', el.id === 'section-' + section);
+        });
+        document.querySelectorAll('.drawer-link[data-section]').forEach(function (btn) {
+          btn.classList.toggle('active', btn.dataset.section === section);
+        });
+        var labels = { overview: 'Dashboard Overview', vote: 'Cast Vote', results: 'Election Results', profile: 'My Profile', help: 'Help & Contact' };
+        $('sectionHeading').textContent = labels[section] || 'Dashboard';
+        closeDrawer();
+        if (section === 'results') loadResults();
+        if (section === 'vote') loadVoteSection();
+      }
+
+      function openDrawer() {
+        $('studentDrawer').classList.add('open');
+        $('drawerBackdrop').classList.add('show');
+      }
+
+      function closeDrawer() {
+        $('studentDrawer').classList.remove('open');
+        $('drawerBackdrop').classList.remove('show');
+      }
+
+      function renderProfile() {
+        var user = state.currentUser;
+        $('displayName').textContent = user.full_name || user.username || 'Student';
+        $('drawerName').textContent = user.full_name || user.username || 'Student';
+        $('drawerEmail').textContent = user.email || user.student_id || 'Signed in';
+        $('dashContactName').value = user.full_name || '';
+        $('dashContactEmail').value = user.email || '';
+
+        $('profileDetails').innerHTML =
+          '<div><span>Full Name</span><strong>' + escapeHtml(user.full_name || '-') + '</strong></div>' +
+          '<div><span>Email</span><strong>' + escapeHtml(user.email || '-') + '</strong></div>' +
+          '<div><span>Username</span><strong>' + escapeHtml(user.username || '-') + '</strong></div>' +
+          '<div><span>Student ID</span><strong>' + escapeHtml(user.student_id || '-') + '</strong></div>';
+
+        $('profileStatus').innerHTML =
+          '<p><strong>Login:</strong> Active session</p>' +
+          '<p><strong>Voting:</strong> Use the Vote tab to see your current voting status.</p>';
+      }
+
+      async function loadOverview() {
+        try {
+          var electionsResult = await requestJson('api/elections.php?status=active');
+          var candidatesResult = await requestJson('api/candidates.php?status=active');
+          var elections = electionsResult.elections || [];
+          state.candidates = candidatesResult.candidates || [];
+          state.activeElection = elections[0] || null;
+
+          var turnout = state.activeElection ? Number(state.activeElection.turnout || 0) : 0;
+          var daysRemaining = '-';
+          if (state.activeElection && state.activeElection.end_date) {
+            var endDate = new Date(String(state.activeElection.end_date).replace(' ', 'T'));
+            var diff = endDate.getTime() - Date.now();
+            daysRemaining = Math.max(0, Math.ceil(diff / 86400000));
+          }
+
+          $('metricElections').textContent = elections.length;
+          $('metricCandidates').textContent = state.candidates.length;
+          $('metricTurnout').textContent = turnout + '%';
+          $('metricDays').textContent = daysRemaining;
+
+          if (state.activeElection) {
+            $('overviewElection').innerHTML =
+              '<p><strong>' + escapeHtml(state.activeElection.title) + '</strong></p>' +
+              '<p>Status: <span class="badge badge-success">Active</span></p>' +
+              '<p>Runs from ' + escapeHtml(formatDate(state.activeElection.start_date)) + ' to ' + escapeHtml(formatDate(state.activeElection.end_date)) + '.</p>';
+            $('voteElectionLabel').textContent = state.activeElection.title;
+          } else {
+            $('overviewElection').innerHTML = 'No active election has been created yet.';
+            $('voteElectionLabel').textContent = 'No active election available.';
+          }
+
+          $('overviewNotifications').innerHTML = state.activeElection
+            ? '<div class="empty-state">An election is active. Cast your vote before the deadline.</div>'
+            : '<div class="empty-state">There is no active election right now.</div>';
+        } catch (error) {
+          notify('error', 'Dashboard Error', error.message);
+        }
+      }
+
+      async function loadVoteSection() {
+        try {
+          if (!state.activeElection) await loadOverview();
+          if (!state.activeElection) {
+            $('candidateList').innerHTML = '<div class="empty-state">No active election is available for voting.</div>';
+            return;
+          }
+
+          var result = await requestJson('api/candidates.php?status=active');
+          state.candidates = result.candidates || [];
+          if (state.currentUser.id) {
+            try {
+              var voteResult = await requestJson('api/votes.php?user_id=' + encodeURIComponent(state.currentUser.id));
+              state.userVotes = voteResult.votes || [];
+            } catch (e) {
+              state.userVotes = [];
+            }
+          }
+
+          if (!state.candidates.length) {
+            $('candidateList').innerHTML = '<div class="empty-state">No active candidates have been added yet.</div>';
+            return;
+          }
+
+          var votedByPosition = {};
+          state.userVotes.forEach(function (vote) {
+            if (Number(vote.election_id) === Number(state.activeElection.id)) {
+              votedByPosition[vote.position || vote.candidate_position] = Number(vote.candidate_id);
+            }
+          });
+
+          var grouped = {};
+          state.candidates.forEach(function (candidate) {
+            var position = candidate.position || 'Other Position';
+            if (!grouped[position]) grouped[position] = [];
+            grouped[position].push(candidate);
+          });
+
+          $('candidateList').innerHTML = Object.keys(grouped).map(function (position) {
+            var votedCandidateId = votedByPosition[position];
+            var cards = grouped[position].map(function (candidate) {
+              var alreadyVotedForPosition = Boolean(votedCandidateId);
+              var votedForThisCandidate = votedCandidateId === Number(candidate.id);
+              var buttonText = votedForThisCandidate ? 'Your Vote' : (alreadyVotedForPosition ? 'Position Voted' : 'Vote');
+              var buttonClass = votedForThisCandidate ? 'btn btn-primary btn-sm' : 'btn btn-primary btn-sm';
+              var disabled = alreadyVotedForPosition ? ' disabled' : '';
+
+              return '<div class="student-card candidate-mini">' +
+                '<div style="width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(10,42,102,0.08);color:var(--primary);"><i class="fas fa-user-graduate"></i></div>' +
+                '<div><h3>' + escapeHtml(candidate.name) + '</h3><p><i class="fas fa-flag"></i> ' + escapeHtml(candidate.party) + '</p></div>' +
+                '<p>' + escapeHtml(candidate.manifesto || 'No manifesto provided.') + '</p>' +
+                '<button class="' + buttonClass + '" data-vote-candidate="' + escapeHtml(candidate.id) + '"' + disabled + '><i class="fas fa-check-circle"></i> ' + buttonText + '</button>' +
+                '</div>';
+            }).join('');
+
+            return '<div class="position-group">' +
+              '<div class="position-heading"><h3>' + escapeHtml(position) + '</h3><span>' + grouped[position].length + ' candidates</span></div>' +
+              '<div class="candidate-list">' + cards + '</div>' +
+              '</div>';
+          }).join('');
+        } catch (error) {
+          $('candidateList').innerHTML = '<div class="empty-state">' + escapeHtml(error.message) + '</div>';
+        }
+      }
+
+      async function loadResults() {
+        try {
+          var result = await requestJson('api/results.php');
+          $('resultsElectionLabel').textContent = result.election.title + ' - ' + result.election.status;
+          $('resultsTotalVotes').textContent = result.total_votes || 0;
+          $('resultsTurnout').textContent = (result.turnout || 0) + '%';
+          $('resultsRegistered').textContent = result.total_registered || 0;
+
+          if (!result.results || !result.results.length) {
+            $('resultsList').innerHTML = '<div class="empty-state">No candidate results are available yet.</div>';
+            return;
+          }
+
+          var grouped = {};
+          result.results.forEach(function (row) {
+            var position = row.position || 'Other Position';
+            if (!grouped[position]) grouped[position] = [];
+            grouped[position].push(row);
+          });
+
+          $('resultsList').innerHTML = Object.keys(grouped).map(function (position) {
+            var rows = grouped[position].map(function (row) {
+              return '<div class="result-row">' +
+                '<div><strong>' + escapeHtml(row.name) + '</strong><br><span>' + escapeHtml(row.party) + '</span></div>' +
+                '<div class="mini-progress"><span style="width:' + Math.max(0, Math.min(100, Number(row.percentage || 0))) + '%"></span></div>' +
+                '<strong>' + escapeHtml(row.percentage || 0) + '%</strong>' +
+                '</div>';
+            }).join('');
+            return '<div style="margin-bottom:20px;">' +
+              '<div class="position-heading"><h3>' + escapeHtml(position) + '</h3><span>Results by position</span></div>' +
+              rows +
+              '</div>';
+          }).join('');
+        } catch (error) {
+          $('resultsList').innerHTML = '<div class="empty-state">' + escapeHtml(error.message) + '</div>';
+        }
+      }
+
+      async function submitVote(candidateId) {
+        if (!state.currentUser.id) {
+          notify('error', 'Login Required', 'Please login again before voting.');
+          return;
+        }
+        if (!state.activeElection) {
+          notify('error', 'No Election', 'There is no active election available.');
+          return;
+        }
+
+        try {
+          await requestJson('api/votes.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              user_id: state.currentUser.id,
+              candidate_id: candidateId,
+              election_id: state.activeElection.id
+            })
+          });
+          closeModal('voteModal');
+          notify('success', 'Vote Recorded', 'Your vote has been saved successfully.');
+          await loadVoteSection();
+          await loadResults();
+          switchSection('results');
+        } catch (error) {
+          closeModal('voteModal');
+          notify('error', 'Vote Failed', error.message);
+        }
+      }
+
+      function bindEvents() {
+        $('drawerToggle').addEventListener('click', openDrawer);
+        $('drawerBackdrop').addEventListener('click', closeDrawer);
+        document.querySelectorAll('.drawer-link[data-section], [data-jump]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            switchSection(btn.dataset.section || btn.dataset.jump);
+          });
+        });
+        $('studentLogout').addEventListener('click', function () {
+          localStorage.removeItem('userToken');
+          localStorage.removeItem('currentUser');
+          localStorage.removeItem('voterName');
+          window.location.href = 'index.html';
+        });
+        $('candidateList').addEventListener('click', function (event) {
+          var button = event.target.closest('[data-vote-candidate]');
+          if (!button) return;
+          state.selectedCandidate = Number(button.dataset.voteCandidate);
+          var candidate = state.candidates.find(function (item) { return Number(item.id) === state.selectedCandidate; });
+          $('candidateName').textContent = candidate ? candidate.name : 'this candidate';
+          openModal('voteModal');
+        });
+        $('cancelDashboardVote').addEventListener('click', function () { closeModal('voteModal'); });
+        $('confirmDashboardVote').addEventListener('click', function () { submitVote(state.selectedCandidate); });
+        $('dashboardContactForm').addEventListener('submit', async function (event) {
+          event.preventDefault();
+          try {
+            await requestJson('api/contact.php', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                name: $('dashContactName').value.trim(),
+                email: $('dashContactEmail').value.trim(),
+                subject: $('dashContactSubject').value.trim(),
+                message: $('dashContactMessage').value.trim()
+              })
+            });
+            $('dashContactSubject').value = '';
+            $('dashContactMessage').value = '';
+            notify('success', 'Message Sent', 'Your message has been saved.');
+          } catch (error) {
+            notify('error', 'Message Failed', error.message);
+          }
+        });
+      }
+
+      async function init() {
+        state.currentUser = getUser();
+        if (!state.currentUser.id && !localStorage.getItem('userToken')) {
+          $('displayName').textContent = 'Guest';
+        }
+        renderProfile();
+        bindEvents();
+        await loadOverview();
+        await loadVoteSection();
+      }
+
+      document.addEventListener('DOMContentLoaded', init);
+    })();
+  </script>
+</body>
+</html>

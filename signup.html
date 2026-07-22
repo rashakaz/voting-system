@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | UMMA Student Voting System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <img src="images/logo.jpg" alt="UMMA Logo" class="nav-logo">
+        <span>UMMA Voting System</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#features">Features</a>
+        <a href="login.html" class="btn-nav"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="auth-page">
+    <div class="auth-container" style="max-width: 520px;">
+      <div class="auth-header">
+        <div class="logo-icon"><i class="fas fa-user-plus"></i></div>
+        <h2>Student Registration</h2>
+        <p>Register to participate in UMMA student elections</p>
+      </div>
+
+      <form id="signupForm" novalidate>
+        <div class="form-group">
+          <label for="fullname">Full Name</label>
+          <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+          </div>
+          <span class="error-message" id="fullnameError">Please enter your full name</span>
+        </div>
+
+        <div class="form-group">
+          <label for="nationalId">Student ID / Reg Number</label>
+          <div class="input-group">
+            <i class="fas fa-id-card"></i>
+            <input type="text" id="nationalId" name="nationalId" placeholder="Enter your UMMA student ID" required>
+          </div>
+          <span class="error-message" id="nationalIdError">Please enter a valid student ID</span>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <div class="input-group">
+            <i class="fas fa-phone"></i>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+          </div>
+          <span class="error-message" id="phoneError">Please enter a valid phone number</span>
+        </div>
+
+        <div class="form-group">
+          <label for="email">UMMA Email Address</label>
+          <div class="input-group">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="email" name="email" placeholder="Enter your @umma.ac.ke email" required>
+          </div>
+          <span class="error-message" id="emailError">Please enter a valid UMMA email address</span>
+        </div>
+
+        <div class="form-group">
+          <label for="regUsername">Username</label>
+          <div class="input-group">
+            <i class="fas fa-user-circle"></i>
+            <input type="text" id="regUsername" name="regUsername" placeholder="Choose a username" required>
+          </div>
+          <span class="error-message" id="regUsernameError">Username must be at least 4 characters</span>
+        </div>
+
+        <div class="form-group">
+          <label for="regPassword">Password</label>
+          <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="regPassword" name="regPassword" placeholder="Create a password" required>
+            <i class="fas fa-eye toggle-password" id="toggleRegPassword"></i>
+          </div>
+          <span class="error-message" id="regPasswordError">Password must be at least 6 characters</span>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+            <i class="fas fa-eye toggle-password" id="toggleConfirmPassword"></i>
+          </div>
+          <span class="error-message" id="confirmPasswordError">Passwords do not match</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">
+          <i class="fas fa-user-plus"></i> Create Student Account
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        <p>Already have an account? <a href="login.html">Log In</a></p>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

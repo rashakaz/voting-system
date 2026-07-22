@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Voters | UMMA Voting System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-body">
+
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <img src="images/logo.jpg" alt="UMMA Logo" class="nav-logo">
+        <span>UMMA Voting System</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="admin-layout">
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="sidebar-header">
+        <h3><i class="fas fa-graduation-cap"></i> UMMA Admin</h3>
+        <p>Student Election Management</p>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="admin.html"><i class="fas fa-dashboard"></i> Dashboard</a>
+        <a href="admin-candidates.html"><i class="fas fa-users"></i> Candidates</a>
+        <a href="admin-voters.html" class="active"><i class="fas fa-person-booth"></i> Student Voters</a>
+        <a href="admin-election.html"><i class="fas fa-vote-yea"></i> Election</a>
+        <a href="results.html"><i class="fas fa-chart-bar"></i> Results</a>
+        <a href="admin-reports.html"><i class="fas fa-file-alt"></i> Reports</a>
+        <a href="index.html" style="color: var(--danger);"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </nav>
+    </aside>
+
+    <main class="admin-main">
+      <div class="admin-main-header">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+          <i class="fas fa-bars"></i>
+        </button>
+        <h1><i class="fas fa-person-booth" style="color:var(--accent);"></i> Student Voters</h1>
+      </div>
+
+      <div class="admin-stats">
+        <div class="admin-stat-card">
+          <div class="stat-icon blue"><i class="fas fa-users"></i></div>
+          <div class="stat-info">
+            <h3>1,200</h3>
+            <p>Registered Voters</p>
+          </div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="stat-icon green"><i class="fas fa-check-circle"></i></div>
+          <div class="stat-info">
+            <h3>772</h3>
+            <p>Votes Cast</p>
+          </div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="stat-icon yellow"><i class="fas fa-clock"></i></div>
+          <div class="stat-info">
+            <h3>428</h3>
+            <p>Pending Votes</p>
+          </div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="stat-icon red"><i class="fas fa-exclamation-triangle"></i></div>
+          <div class="stat-info">
+            <h3>0</h3>
+            <p>Inactive Accounts</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <h3>
+          <span><i class="fas fa-list"></i> Voter Registry</span>
+          <a href="#"><i class="fas fa-download"></i> Export CSV</a>
+        </h3>
+        <div class="admin-filters" style="display:flex;gap:15px;margin-bottom:20px;flex-wrap:wrap;">
+          <input id="voterSearchInput" type="text" placeholder="Search by name, ID, email, or username..." style="padding:10px 16px;border:2px solid var(--gray-300);border-radius:var(--radius-sm);font-size:0.9rem;flex:1;min-width:200px;background:var(--gray-100);color:var(--gray-800);">
+          <select id="voterStatusFilter" style="padding:10px 16px;border:2px solid var(--gray-300);border-radius:var(--radius-sm);font-size:0.9rem;background:var(--gray-100);color:var(--gray-800);">
+            <option value="">All Status</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+          <button id="voterSearchBtn" style="padding:10px 20px;background:var(--primary);color:var(--white);border:none;border-radius:var(--radius-sm);font-weight:600;cursor:pointer;"><i class="fas fa-search"></i> Search</button>
+        </div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Full Name</th>
+                <th>Student ID</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Status</th>
+                <th>Voted On</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td><strong>John Mwangi</strong></td>
+                <td>UMMA-2021-001</td>
+                <td>john.mwangi@umma.edu</td>
+                <td>+254 712 345 678</td>
+                <td><span class="badge badge-success">Voted</span></td>
+                <td>Jul 2, 2026</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><strong>Amina K. Ali</strong></td>
+                <td>UMMA-2022-045</td>
+                <td>amina.ali@umma.edu</td>
+                <td>+254 723 456 789</td>
+                <td><span class="badge badge-success">Voted</span></td>
+                <td>Jul 1, 2026</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td><strong>Peter O. Okello</strong></td>
+                <td>UMMA-2023-112</td>
+                <td>peter.okello@umma.edu</td>
+                <td>+254 734 567 890</td>
+                <td><span class="badge badge-warning">Not Voted</span></td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td><strong>Grace Wanjiku</strong></td>
+                <td>UMMA-2021-078</td>
+                <td>grace.wanjiku@umma.edu</td>
+                <td>+254 745 678 901</td>
+                <td><span class="badge badge-danger">Flagged</span></td>
+                <td>Jun 30, 2026</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td><strong>Hassan M. Ibrahim</strong></td>
+                <td>UMMA-2022-156</td>
+                <td>hassan.ibrahim@umma.edu</td>
+                <td>+254 756 789 012</td>
+                <td><span class="badge badge-success">Voted</span></td>
+                <td>Jun 29, 2026</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td><strong>Faith N. Kimani</strong></td>
+                <td>UMMA-2023-201</td>
+                <td>faith.kimani@umma.edu</td>
+                <td>+254 767 890 123</td>
+                <td><span class="badge badge-warning">Not Voted</span></td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td><strong>Samuel Kiprop</strong></td>
+                <td>UMMA-2021-034</td>
+                <td>samuel.kiprop@umma.edu</td>
+                <td>+254 778 901 234</td>
+                <td><span class="badge badge-success">Voted</span></td>
+                <td>Jun 28, 2026</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td><strong>Zainab A. Hassan</strong></td>
+                <td>UMMA-2022-189</td>
+                <td>zainab.hassan@umma.edu</td>
+                <td>+254 789 012 345</td>
+                <td><span class="badge badge-warning">Not Voted</span></td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination">
+          <span class="pagination-info">Showing 1-8 of 1,200 voters</span>
+          <div class="pagination-buttons">
+            <button class="pagination-btn active">1</button>
+            <button class="pagination-btn">2</button>
+            <button class="pagination-btn">3</button>
+            <button class="pagination-btn">...</button>
+            <button class="pagination-btn">150</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

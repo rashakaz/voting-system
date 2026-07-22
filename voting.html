@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vote Now | UMMA Student Voting System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .candidate-card .party-badge { background: var(--accent); color: var(--primary-dark); }
+    .candidate-card:hover { border-color: var(--accent); }
+    .candidate-card .btn-vote:hover { background: var(--accent); color: var(--primary-dark); }
+    .candidate-card.voted { border-color: var(--accent); }
+    .candidate-card.voted .btn-vote { background: var(--accent); color: var(--primary-dark); }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <img src="images/logo.jpg" alt="UMMA Logo" class="nav-logo">
+        <span>UMMA Voting System</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="results.html">Results</a>
+        <a href="profile.html">Profile</a>
+        <a href="contact.html">Contact</a>
+        <a href="index.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="voting-page">
+    <div class="container">
+      <div class="section-header">
+        <h2><i class="fas fa-vote-yea" style="color:var(--accent);"></i> Cast Your Student Vote</h2>
+        <p>Select your preferred candidate for the UMMA SRC President 2026</p>
+      </div>
+
+      <div class="election-status" style="margin-bottom: 30px;">
+        <h3><i class="fas fa-info-circle" style="color:var(--accent);"></i> SRC Presidential Election 2026</h3>
+        <div class="status-bar">
+          <div class="status-indicator">
+            <span class="status-dot active"></span>
+            <div class="status-info">
+              <h4>Voting Open</h4>
+              <p>Deadline: July 10, 2026 - 5:00 PM (EAT)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="candidates-grid" id="candidatesGrid">
+        <div class="candidate-card" data-candidate="1">
+          <div class="candidate-photo">
+            <i class="fas fa-user-graduate"></i>
+            <span class="party-badge">UMMA FIRST</span>
+          </div>
+          <div class="candidate-info">
+            <h3>Fatima A. Hassan</h3>
+            <p class="party-name"><i class="fas fa-flag"></i> UMMA First Alliance</p>
+            <p class="manifesto">"Empowering every UMMA student through accessible resources, transparent governance, and a stronger voice in university decision-making."</p>
+            <button class="btn-vote" onclick="confirmVote(this, 'Fatima A. Hassan')">
+              <i class="fas fa-check-circle"></i> Vote for This Candidate
+            </button>
+          </div>
+        </div>
+
+        <div class="candidate-card" data-candidate="2">
+          <div class="candidate-photo">
+            <i class="fas fa-user-graduate"></i>
+            <span class="party-badge">STUDENT VOICE</span>
+          </div>
+          <div class="candidate-info">
+            <h3>Mohammed Ahmed</h3>
+            <p class="party-name"><i class="fas fa-flag"></i> Student Voice Movement</p>
+            <p class="manifesto">"Bringing real change to UMMA by improving hostel facilities, expanding library hours, and creating more internship opportunities for students."</p>
+            <button class="btn-vote" onclick="confirmVote(this, 'Mohammed Ahmed')">
+              <i class="fas fa-check-circle"></i> Vote for This Candidate
+            </button>
+          </div>
+        </div>
+
+        <div class="candidate-card" data-candidate="3">
+          <div class="candidate-photo">
+            <i class="fas fa-user-graduate"></i>
+            <span class="party-badge">UNITY</span>
+          </div>
+          <div class="candidate-info">
+            <h3>Aisha Mushi</h3>
+            <p class="party-name"><i class="fas fa-flag"></i> Unity Student Party</p>
+            <p class="manifesto">"Uniting UMMA students across all campuses — Kajiado, Thika, Garissa — for inclusive representation and equitable resource distribution."</p>
+            <button class="btn-vote" onclick="confirmVote(this, 'Aisha Mushi')">
+              <i class="fas fa-check-circle"></i> Vote for This Candidate
+            </button>
+          </div>
+        </div>
+
+        <div class="candidate-card" data-candidate="4">
+          <div class="candidate-photo">
+            <i class="fas fa-user-graduate"></i>
+            <span class="party-badge">PROGRESS</span>
+          </div>
+          <div class="candidate-info">
+            <h3>Musa I. Ali</h3>
+            <p class="party-name"><i class="fas fa-flag"></i> Progress Party UMMA</p>
+            <p class="manifesto">"Driving digital transformation at UMMA with e-learning enhancements, better Wi-Fi infrastructure, and a student entrepreneurship fund."</p>
+            <button class="btn-vote" onclick="confirmVote(this, 'Musa I. Ali')">
+              <i class="fas fa-check-circle"></i> Vote for This Candidate
+            </button>
+          </div>
+        </div>
+
+        <div class="candidate-card" data-candidate="5">
+          <div class="candidate-photo">
+            <i class="fas fa-user-graduate"></i>
+            <span class="party-badge">REFORM</span>
+          </div>
+          <div class="candidate-info">
+            <h3>Farriz Kimani</h3>
+            <p class="party-name"><i class="fas fa-flag"></i> Reform Coalition</p>
+            <p class="manifesto">"Empowering student enterprise through innovation hubs, mentorship programs, and industry partnerships across all UMMA campuses."</p>
+            <button class="btn-vote" onclick="confirmVote(this, 'Farriz Kimani')">
+              <i class="fas fa-check-circle"></i> Vote for This Candidate
+            </button>
+          </div>
+        </div>
+
+        <div class="candidate-card" data-candidate="6">
+          <div class="candidate-photo">
+            <i class="fas fa-user-graduate"></i>
+            <span class="party-badge">UMMA 1ST</span>
+          </div>
+          <div class="candidate-info">
+            <h3>Nassir Ahmed</h3>
+            <p class="party-name"><i class="fas fa-flag"></i> UMMA First</p>
+            <p class="manifesto">"Building a stronger UMMA community with enhanced security, improved hostel facilities, and expanded library resources for all students."</p>
+            <button class="btn-vote" onclick="confirmVote(this, 'Nassir Ahmed')">
+              <i class="fas fa-check-circle"></i> Vote for This Candidate
+            </button>
+          </div>
+        </div>
+
+        <div class="candidate-card" data-candidate="7">
+          <div class="candidate-photo">
+            <i class="fas fa-user-graduate"></i>
+            <span class="party-badge">VOICE</span>
+          </div>
+          <div class="candidate-info">
+            <h3>Hanan Ibrahim</h3>
+            <p class="party-name"><i class="fas fa-flag"></i> Student Voice Movement</p>
+            <p class="manifesto">"Advocating for affordable tuition, expanded bursary programs, and better mental health support services for UMMA students."</p>
+            <button class="btn-vote" onclick="confirmVote(this, 'Hanan Ibrahim')">
+              <i class="fas fa-check-circle"></i> Vote for This Candidate
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Confirmation Modal -->
+  <div class="modal-overlay" id="voteModal">
+    <div class="modal-content">
+      <div class="modal-icon confirm">
+        <i class="fas fa-vote-yea"></i>
+      </div>
+      <h2>Confirm Your Student Vote</h2>
+      <p>You are about to vote for <strong id="candidateName">Candidate</strong> as your UMMA SRC President. This action cannot be undone. Are you sure you want to proceed?</p>
+      <div class="modal-actions">
+        <button class="btn btn-outline" style="color:var(--primary);border-color:var(--gray-400);" onclick="closeModal('voteModal')">Cancel</button>
+        <button class="btn btn-primary" id="confirmVoteBtn" onclick="submitVote()">
+          <i class="fas fa-check-circle"></i> Yes, Cast My Vote
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal-content">
+      <div class="modal-icon success">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h2>Vote Recorded Successfully!</h2>
+      <p>Your student vote has been encrypted and recorded. Thank you for participating in the UMMA democratic process and making your voice heard.</p>
+      <div class="modal-actions">
+        <a href="dashboard.html" class="btn btn-primary">
+          <i class="fas fa-home"></i> Go to Dashboard
+        </a>
+        <a href="results.html" class="btn btn-outline" style="color:var(--primary);border-color:var(--gray-400);">
+          <i class="fas fa-chart-bar"></i> View Results
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile | UMMA Student Voting System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <img src="images/logo.jpg" alt="UMMA Logo" class="nav-logo">
+        <span>UMMA Voting System</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="voting.html">Vote Now</a>
+        <a href="results.html">Results</a>
+        <a href="contact.html">Contact</a>
+        <a href="index.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="profile-page">
+    <div class="container">
+      <div class="profile-header-card">
+        <div class="profile-pic">
+          <i class="fas fa-user-graduate"></i>
+        </div>
+        <h2 class="editable" data-key="profileName" id="profileName">John Mwangi</h2>
+        <p><i class="fas fa-map-marker-alt"></i> <span class="editable" data-key="profileCampus">Kajiado Campus</span> | <i class="fas fa-id-card"></i> Student ID: <span class="editable" data-key="profileStudentId">UMMA-2026-0042</span></p>
+        <button id="profileEditToggle" class="btn btn-sm" style="margin-top:15px;background:rgba(255,255,255,0.2);color:var(--white);border:1px solid rgba(255,255,255,0.3);"><i class="fas fa-pen"></i> Edit Profile</button>
+      </div>
+
+      <div class="profile-details">
+        <div class="profile-info-card">
+          <h3><i class="fas fa-user-circle" style="color:var(--accent);"></i> Student Information</h3>
+          <div class="info-row">
+            <span class="info-label">Full Name</span>
+            <span class="info-value editable" data-key="infoFullName">John Mwangi</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Student ID</span>
+            <span class="info-value editable" data-key="infoStudentId">UMMA-2026-0042</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Phone</span>
+            <span class="info-value editable" data-key="infoPhone">+254 712 345 678</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Email</span>
+            <span class="info-value editable" data-key="infoEmail">john.mwangi@umma.ac.ke</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Username</span>
+            <span class="info-value editable" data-key="infoUsername">johnmwangi</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Date of Birth</span>
+            <span class="info-value editable" data-key="infoDob">March 15, 2002</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Campus</span>
+            <span class="info-value editable" data-key="infoCampus">Kajiado (Main Campus)</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Course</span>
+            <span class="info-value editable" data-key="infoCourse">BSc. Computer Science</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Registration Date</span>
+            <span class="info-value editable" data-key="infoRegDate">May 20, 2026</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="profile-info-card">
+            <h3><i class="fas fa-cog" style="color:var(--accent);"></i> Account Settings</h3>
+            <div class="profile-actions">
+              <button class="btn btn-primary btn-block" id="saveProfileBtn" style="display:none;">
+                <i class="fas fa-check"></i> Save Changes
+              </button>
+              <button class="btn btn-outline btn-block" style="color:var(--primary);border-color:var(--gray-400);" onclick="showToast('info', 'Password Change', 'Password change feature coming soon.')">
+                <i class="fas fa-key"></i> Change Password
+              </button>
+              <button class="btn btn-outline btn-block" style="color:var(--danger);border-color:var(--danger);" onclick="showToast('warning', 'Account Deletion', 'Account deletion is not allowed during an active student election.')">
+                <i class="fas fa-trash-alt"></i> Delete Account
+              </button>
+            </div>
+          </div>
+
+          <div class="profile-info-card" style="margin-top: 20px;">
+            <h3><i class="fas fa-vote-yea" style="color:var(--accent);"></i> Voting Status</h3>
+            <div class="voting-status not-voted" id="votingStatus">
+              <i class="fas fa-clock"></i>
+              <div class="status-text">
+                <h4 class="editable" data-key="votingStatusTitle">You have not voted yet</h4>
+                <p class="editable" data-key="votingStatusBody">Cast your vote before July 10, 2026. Your voice shapes UMMA's future!</p>
+              </div>
+            </div>
+            <div style="margin-top: 15px;">
+              <a href="voting.html" class="btn btn-primary btn-block"><i class="fas fa-vote-yea"></i> Vote Now</a>
+            </div>
+          </div>
+
+          <div class="profile-info-card" style="margin-top: 20px;">
+            <h3><i class="fas fa-shield-alt" style="color:var(--accent);"></i> Account Security</h3>
+            <div class="info-row">
+              <span class="info-label">2FA Status</span>
+              <span class="info-value"><span class="badge badge-success">Enabled</span></span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Last Login</span>
+              <span class="info-value editable" data-key="lastLogin">July 3, 2026 10:30 AM (EAT)</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Active Sessions</span>
+              <span class="info-value editable" data-key="activeSessions">2 Devices</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

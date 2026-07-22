@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Candidates | UMMA Voting System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-body">
+
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <img src="images/logo.jpg" alt="UMMA Logo" class="nav-logo">
+        <span>UMMA Voting System</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="admin-layout">
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="sidebar-header">
+        <h3><i class="fas fa-graduation-cap"></i> UMMA Admin</h3>
+        <p>Student Election Management</p>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="admin.html"><i class="fas fa-dashboard"></i> Dashboard</a>
+        <a href="admin-candidates.html" class="active"><i class="fas fa-users"></i> Candidates</a>
+        <a href="admin-voters.html"><i class="fas fa-person-booth"></i> Student Voters</a>
+        <a href="admin-election.html"><i class="fas fa-vote-yea"></i> Election</a>
+        <a href="results.html"><i class="fas fa-chart-bar"></i> Results</a>
+        <a href="admin-reports.html"><i class="fas fa-file-alt"></i> Reports</a>
+        <a href="index.html" style="color: var(--danger);"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </nav>
+    </aside>
+
+    <main class="admin-main">
+      <div class="admin-main-header">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+          <i class="fas fa-bars"></i>
+        </button>
+        <h1><i class="fas fa-users" style="color:var(--accent);"></i> Manage Candidates</h1>
+      </div>
+
+      <div class="admin-card" style="margin-bottom:30px;">
+        <h3>
+          <span><i class="fas fa-user-tie"></i> All SRC Candidates</span>
+          <a href="#"><i class="fas fa-plus"></i> Add New Candidate</a>
+        </h3>
+        <div class="admin-filters" style="display:flex;gap:15px;margin-bottom:20px;flex-wrap:wrap;">
+          <input type="text" placeholder="Search candidates..." style="padding:10px 16px;border:2px solid var(--gray-300);border-radius:var(--radius-sm);font-size:0.9rem;flex:1;min-width:200px;background:var(--gray-100);color:var(--gray-800);">
+          <select style="padding:10px 16px;border:2px solid var(--gray-300);border-radius:var(--radius-sm);font-size:0.9rem;background:var(--gray-100);color:var(--gray-800);">
+            <option>All Positions</option>
+            <option>SRC President</option>
+            <option>Vice President</option>
+            <option>Secretary General</option>
+            <option>Treasurer</option>
+          </select>
+          <select style="padding:10px 16px;border:2px solid var(--gray-300);border-radius:var(--radius-sm);font-size:0.9rem;background:var(--gray-100);color:var(--gray-800);">
+            <option>All Status</option>
+            <option>Active</option>
+            <option>Pending</option>
+            <option>Rejected</option>
+          </select>
+          <button style="padding:10px 20px;background:var(--primary);color:var(--white);border:none;border-radius:var(--radius-sm);font-weight:600;cursor:pointer;"><i class="fas fa-search"></i> Search</button>
+        </div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Photo</th>
+                <th>Name</th>
+                <th>Party</th>
+                <th>Position</th>
+                <th>Votes</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td><div style="width:36px;height:36px;background:var(--gray-300);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gray-600);"><i class="fas fa-user"></i></div></td>
+                <td><strong>Fatima A. Hassan</strong></td>
+                <td>UMMA First</td>
+                <td>SRC President</td>
+                <td>295</td>
+                <td><span class="badge badge-success">Active</span></td>
+                <td>
+                  <button class="admin-action-btn edit" style="margin-right:5px;"><i class="fas fa-edit"></i></button>
+                  <button class="admin-action-btn delete"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><div style="width:36px;height:36px;background:var(--gray-300);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gray-600);"><i class="fas fa-user"></i></div></td>
+                <td><strong>Mohammed Ahmed</strong></td>
+                <td>Reform Coalition</td>
+                <td>SRC President</td>
+                <td>220</td>
+                <td><span class="badge badge-success">Active</span></td>
+                <td>
+                  <button class="admin-action-btn edit" style="margin-right:5px;"><i class="fas fa-edit"></i></button>
+                  <button class="admin-action-btn delete"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td><div style="width:36px;height:36px;background:var(--gray-300);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gray-600);"><i class="fas fa-user"></i></div></td>
+                <td><strong>Aisha Mushi</strong></td>
+                <td>Unity Party</td>
+                <td>SRC President</td>
+                <td>153</td>
+                <td><span class="badge badge-success">Active</span></td>
+                <td>
+                  <button class="admin-action-btn edit" style="margin-right:5px;"><i class="fas fa-edit"></i></button>
+                  <button class="admin-action-btn delete"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td><div style="width:36px;height:36px;background:var(--gray-300);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gray-600);"><i class="fas fa-user"></i></div></td>
+                <td><strong>Musa I. Ali</strong></td>
+                <td>Progress</td>
+                <td>SRC President</td>
+                <td>104</td>
+                <td><span class="badge badge-warning">Pending</span></td>
+                <td>
+                  <button class="admin-action-btn approve" style="margin-right:5px;"><i class="fas fa-check"></i></button>
+                  <button class="admin-action-btn reject"><i class="fas fa-times"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td><div style="width:36px;height:36px;background:var(--gray-300);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gray-600);"><i class="fas fa-user"></i></div></td>
+                <td><strong>Farriz Kimani</strong></td>
+                <td>Reform Coalition</td>
+                <td>SRC President</td>
+                <td>87</td>
+                <td><span class="badge badge-success">Active</span></td>
+                <td>
+                  <button class="admin-action-btn edit" style="margin-right:5px;"><i class="fas fa-edit"></i></button>
+                  <button class="admin-action-btn delete"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td><div style="width:36px;height:36px;background:var(--gray-300);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gray-600);"><i class="fas fa-user"></i></div></td>
+                <td><strong>Nassir Ahmed</strong></td>
+                <td>UMMA First</td>
+                <td>SRC President</td>
+                <td>65</td>
+                <td><span class="badge badge-success">Active</span></td>
+                <td>
+                  <button class="admin-action-btn edit" style="margin-right:5px;"><i class="fas fa-edit"></i></button>
+                  <button class="admin-action-btn delete"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td><div style="width:36px;height:36px;background:var(--gray-300);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gray-600);"><i class="fas fa-user"></i></div></td>
+                <td><strong>Hanan Ibrahim</strong></td>
+                <td>Student Voice</td>
+                <td>SRC President</td>
+                <td>42</td>
+                <td><span class="badge badge-success">Active</span></td>
+                <td>
+                  <button class="admin-action-btn edit" style="margin-right:5px;"><i class="fas fa-edit"></i></button>
+                  <button class="admin-action-btn delete"><i class="fas fa-trash"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

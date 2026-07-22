@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports | UMMA Voting System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-body">
+
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <img src="images/logo.jpg" alt="UMMA Logo" class="nav-logo">
+        <span>UMMA Voting System</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="admin-layout">
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="sidebar-header">
+        <h3><i class="fas fa-graduation-cap"></i> UMMA Admin</h3>
+        <p>Student Election Management</p>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="admin.html"><i class="fas fa-dashboard"></i> Dashboard</a>
+        <a href="admin-candidates.html"><i class="fas fa-users"></i> Candidates</a>
+        <a href="admin-voters.html"><i class="fas fa-person-booth"></i> Student Voters</a>
+        <a href="admin-election.html"><i class="fas fa-vote-yea"></i> Election</a>
+        <a href="results.html"><i class="fas fa-chart-bar"></i> Results</a>
+        <a href="admin-reports.html" class="active"><i class="fas fa-file-alt"></i> Reports</a>
+        <a href="index.html" style="color: var(--danger);"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </nav>
+    </aside>
+
+    <main class="admin-main">
+      <div class="admin-main-header">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+          <i class="fas fa-bars"></i>
+        </button>
+        <h1><i class="fas fa-file-alt" style="color:var(--accent);"></i> Reports & Analytics</h1>
+      </div>
+
+      <div class="admin-stats">
+        <div class="admin-stat-card">
+          <div class="stat-icon blue"><i class="fas fa-file-pdf"></i></div>
+          <div class="stat-info">
+            <h3>12</h3>
+            <p>Reports Generated</p>
+          </div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="stat-icon green"><i class="fas fa-download"></i></div>
+          <div class="stat-info">
+            <h3>48</h3>
+            <p>Total Downloads</p>
+          </div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="stat-icon yellow"><i class="fas fa-chart-line"></i></div>
+          <div class="stat-info">
+            <h3>64.3%</h3>
+            <p>Voter Turnout</p>
+          </div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="stat-icon red"><i class="fas fa-exclamation-triangle"></i></div>
+          <div class="stat-info">
+            <h3>2</h3>
+            <p>Anomalies Detected</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-grid">
+        <div class="admin-card">
+          <h3><i class="fas fa-file-export"></i> Generate Reports</h3>
+          <div style="display:grid;gap:15px;">
+            <div class="admin-list-item">
+              <div>
+                <h4>Voter Turnout Report</h4>
+                <p>Detailed turnout statistics by class year and campus</p>
+              </div>
+              <button class="admin-btn admin-btn-primary" style="padding:10px 20px;"><i class="fas fa-download"></i> Generate</button>
+            </div>
+            <div class="admin-list-item">
+              <div>
+                <h4>Election Results Summary</h4>
+                <p>Complete results with vote counts and percentages</p>
+              </div>
+              <button class="admin-btn admin-btn-primary" style="padding:10px 20px;"><i class="fas fa-download"></i> Generate</button>
+            </div>
+            <div class="admin-list-item">
+              <div>
+                <h4>Candidate Performance Report</h4>
+                <p>Individual candidate performance and vote distribution</p>
+              </div>
+              <button class="admin-btn admin-btn-primary" style="padding:10px 20px;"><i class="fas fa-download"></i> Generate</button>
+            </div>
+            <div class="admin-list-item">
+              <div>
+                <h4>Security Audit Log</h4>
+                <p>All security events, flaggings, and verification attempts</p>
+              </div>
+              <button class="admin-btn admin-btn-primary" style="padding:10px 20px;"><i class="fas fa-download"></i> Generate</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h3><i class="fas fa-history"></i> Recent Reports</h3>
+          <div class="admin-activity">
+            <div class="activity-item">
+              <div class="activity-icon"><i class="fas fa-file-pdf"></i></div>
+              <div class="activity-text">
+                <p>Voter Turnout Report - <strong>Jul 2026</strong></p>
+                <span>Generated 2 hours ago</span>
+              </div>
+              <button class="admin-action-btn edit"><i class="fas fa-download"></i></button>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon"><i class="fas fa-file-pdf"></i></div>
+              <div class="activity-text">
+                <p>Election Results Summary - <strong>Jul 2026</strong></p>
+                <span>Generated 1 day ago</span>
+              </div>
+              <button class="admin-action-btn edit"><i class="fas fa-download"></i></button>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon"><i class="fas fa-file-pdf"></i></div>
+              <div class="activity-text">
+                <p>Security Audit Log - <strong>Weekly</strong></p>
+                <span>Generated 3 days ago</span>
+              </div>
+              <button class="admin-action-btn edit"><i class="fas fa-download"></i></button>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon"><i class="fas fa-file-pdf"></i></div>
+              <div class="activity-text">
+                <p>Candidate Performance - <strong>SRC President</strong></p>
+                <span>Generated 5 days ago</span>
+              </div>
+              <button class="admin-action-btn edit"><i class="fas fa-download"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

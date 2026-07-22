@@ -1,0 +1,14 @@
+{
+  "name": "umma-voting-system",
+  "version": "1.0.0",
+  "description": "UMMA Student Voting System - SRC Election Management Platform",
+  "main": "index.js",
+  "scripts": {
+    "start": "php -S localhost:8000",
+    "install-db": "php install.php",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["umma", "voting", "election", "student", "src"],
+  "author": "UMMA University",
+  "license": "MIT"
+}

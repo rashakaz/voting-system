@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Election Results | UMMA Student Voting System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .result-item .result-percentage { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <img src="images/logo.jpg" alt="UMMA Logo" class="nav-logo">
+        <span>UMMA Voting System</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="voting.html">Vote Now</a>
+        <a href="profile.html">Profile</a>
+        <a href="contact.html">Contact</a>
+        <a href="index.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="results-page">
+    <div class="container">
+      <div class="section-header">
+        <h2><i class="fas fa-chart-bar" style="color:var(--accent);"></i> SRC Election Results</h2>
+        <p>UMMA University Student Council Elections 2026 - Real-Time Results</p>
+      </div>
+
+      <div class="winner-card">
+        <div class="winner-icon"><i class="fas fa-crown"></i></div>
+        <h2>Fatima A. Hassan</h2>
+        <p>Leading Candidate - UMMA First Alliance</p>
+        <p style="margin-top: 10px; font-size: 1.3rem; font-weight: 700;">38.2% of Total Student Votes</p>
+      </div>
+
+      <div class="results-stats">
+        <div class="result-stat">
+          <i class="fas fa-users"></i>
+          <div class="stat-number">772</div>
+          <div class="stat-label">Total Votes Cast</div>
+        </div>
+        <div class="result-stat">
+          <i class="fas fa-check-circle"></i>
+          <div class="stat-number">765</div>
+          <div class="stat-label">Valid Votes</div>
+        </div>
+        <div class="result-stat">
+          <i class="fas fa-times-circle"></i>
+          <div class="stat-number">7</div>
+          <div class="stat-label">Spoilt Votes</div>
+        </div>
+        <div class="result-stat">
+          <i class="fas fa-clock"></i>
+          <div class="stat-number">64.3%</div>
+          <div class="stat-label">Student Turnout</div>
+        </div>
+        <div class="result-stat">
+          <i class="fas fa-flag"></i>
+          <div class="stat-number">4</div>
+          <div class="stat-label">Candidates</div>
+        </div>
+        <div class="result-stat">
+          <i class="fas fa-building"></i>
+          <div class="stat-number">3</div>
+          <div class="stat-label">Campuses</div>
+        </div>
+      </div>
+
+      <div class="results-list">
+        <h3 style="color:var(--primary); margin-bottom: 20px; font-size: 1.2rem;">
+          <i class="fas fa-list"></i> Candidate Results
+        </h3>
+        <div class="result-item">
+          <div class="result-photo" style="background:rgba(10,42,102,0.1);color:var(--primary);">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <div class="result-name">
+            <h4>Fatima A. Hassan</h4>
+            <p>UMMA First Alliance</p>
+          </div>
+          <div class="result-bar">
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 38.2%; background: linear-gradient(90deg, var(--primary), #2a5fbf);"></div>
+            </div>
+          </div>
+          <div class="result-percentage">38.2%</div>
+        </div>
+        <div class="result-item">
+          <div class="result-photo" style="background:rgba(79,195,247,0.15);color:var(--accent-dark);">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <div class="result-name">
+            <h4>Mohammed Ahmed</h4>
+            <p>Student Voice Movement</p>
+          </div>
+          <div class="result-bar">
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 28.5%; background: linear-gradient(90deg, var(--accent), var(--accent-dark));"></div>
+            </div>
+          </div>
+          <div class="result-percentage">28.5%</div>
+        </div>
+        <div class="result-item">
+          <div class="result-photo" style="background:rgba(25,135,84,0.1);color:var(--secondary);">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <div class="result-name">
+            <h4>Aisha Mushi</h4>
+            <p>Unity Student Party</p>
+          </div>
+          <div class="result-bar">
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 19.8%; background: linear-gradient(90deg, var(--secondary), #20c997);"></div>
+            </div>
+          </div>
+          <div class="result-percentage">19.8%</div>
+        </div>
+        <div class="result-item">
+          <div class="result-photo" style="background:rgba(255,193,7,0.1);color:#856404;">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <div class="result-name">
+            <h4>Musa I. Ali</h4>
+            <p>Progress Party UMMA</p>
+          </div>
+          <div class="result-bar">
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 13.5%; background: linear-gradient(90deg, #ffc107, #ffcd39);"></div>
+            </div>
+          </div>
+          <div class="result-percentage">13.5%</div>
+        </div>
+        <div class="result-item">
+          <div class="result-photo" style="background:rgba(108,117,125,0.1);color:var(--gray-600);">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <div class="result-name">
+            <h4>Farriz Kimani</h4>
+            <p>Reform Coalition</p>
+          </div>
+          <div class="result-bar">
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 11.3%; background: linear-gradient(90deg, #6c757d, #adb5bd);"></div>
+            </div>
+          </div>
+          <div class="result-percentage">11.3%</div>
+        </div>
+        <div class="result-item">
+          <div class="result-photo" style="background:rgba(13,202,240,0.1);color:var(--info);">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <div class="result-name">
+            <h4>Nassir Ahmed</h4>
+            <p>UMMA First</p>
+          </div>
+          <div class="result-bar">
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 8.4%; background: linear-gradient(90deg, #0dcaf0, #3dd5f3);"></div>
+            </div>
+          </div>
+          <div class="result-percentage">8.4%</div>
+        </div>
+        <div class="result-item">
+          <div class="result-photo" style="background:rgba(220,53,69,0.1);color:var(--danger);">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <div class="result-name">
+            <h4>Hanan Ibrahim</h4>
+            <p>Student Voice Movement</p>
+          </div>
+          <div class="result-bar">
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 5.4%; background: linear-gradient(90deg, #dc3545, #e35d6a);"></div>
+            </div>
+          </div>
+          <div class="result-percentage">5.4%</div>
+        </div>
+      </div>
+
+      <div class="charts-grid">
+        <div class="chart-card">
+          <h3><i class="fas fa-chart-pie"></i> Vote Distribution</h3>
+          <div class="chart-placeholder">
+            <div class="pie-placeholder"></div>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h3><i class="fas fa-chart-bar"></i> Votes by Campus</h3>
+          <div class="chart-placeholder">
+            <i class="fas fa-chart-simple"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

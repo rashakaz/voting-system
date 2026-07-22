@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UMMA University Student Voting System | Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .umma-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent); color: var(--primary-dark); padding: 4px 14px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.5px; }
+    .hero-content h1 span { color: var(--accent); }
+    .section-header h2::after { background: var(--accent); }
+    .feature-card::before { background: var(--accent); }
+    .feature-card:hover .icon { background: var(--accent); color: var(--primary-dark); }
+    .step-number { background: var(--accent); color: var(--primary-dark); box-shadow: 0 5px 20px rgba(79,195,247,0.3); }
+    .step:hover .step-number { box-shadow: 0 8px 30px rgba(79,195,247,0.4); }
+    .stat-card:hover { border-color: var(--accent); }
+    .stat-card i { color: var(--accent); }
+    .benefit-item i { color: var(--accent); }
+    .footer-col h3::after { background: var(--accent); }
+    .footer-social a:hover { background: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <img src="images/logo.jpg" alt="UMMA Logo" class="nav-logo">
+        <span>UMMA Voting System</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="login.html" class="btn-nav"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="signup.html" class="btn-nav"><i class="fas fa-user-plus"></i> Register</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <span class="umma-badge"><i class="fas fa-graduation-cap"></i> UMMA University</span>
+        <h1 style="margin-top:15px;">UMMA University Student <span>Electoral System</span></h1>
+        <p>A secure, transparent, and accessible electronic voting platform designed for Umma University students to participate in campus leadership elections with confidence and integrity.</p>
+        <div class="hero-buttons">
+          <a href="signup.html" class="btn btn-primary"><i class="fas fa-user-plus"></i> Register to Vote</a>
+          <a href="#about" class="btn btn-outline"><i class="fas fa-info-circle"></i> Learn More</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="hero-illustration">
+          <div class="icon-display">
+            <i class="fas fa-vote-yea"></i>
+            <h3>Your Voice Matters</h3>
+            <p>Shape UMMA's Future Leadership</p>
+          </div>
+          <div class="floating-card">
+            <i class="fas fa-shield-alt"></i> Secure Student Voting
+          </div>
+          <div class="floating-card">
+            <i class="fas fa-check-circle"></i> Verifiable & Transparent
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="section-header">
+        <h2>About the System</h2>
+        <p>Empowering UMMA student democracy through technology</p>
+      </div>
+      <div class="about-content">
+        <div class="about-text">
+          <p>The <strong>UMMA University Student Electoral System</strong> is a comprehensive electronic voting platform designed to modernize the student council election process at Umma University. Built with cutting-edge web technologies, this system ensures that every student vote is counted accurately, securely, and transparently.</p>
+          <p>Our mission is to eliminate electoral malpractice, increase student voter turnout, and provide real-time results that the entire UMMA community can trust. By leveraging secure authentication, encryption, and user-friendly interfaces, we make student governance participation accessible to all.</p>
+          <p>This project represents the future of campus democracy — where technology and student governance meet to create a fairer, more inclusive university community.</p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-card">
+            <i class="fas fa-users"></i>
+            <h3>1,200+</h3>
+            <p>Registered Students</p>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-check-double"></i>
+            <h3>99.9%</h3>
+            <p>Accuracy Rate</p>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-shield-alt"></i>
+            <h3>100%</h3>
+            <p>Secure Voting</p>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-clock"></i>
+            <h3>Real-Time</h3>
+            <p>Results Processing</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section class="section features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <h2>Key Features</h2>
+        <p>What makes our student voting system stand out</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon"><i class="fas fa-fingerprint"></i></div>
+          <h3>Student Authentication</h3>
+          <p>Secure login using your UMMA student credentials ensures that only registered students can access the system and cast their vote.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon"><i class="fas fa-lock"></i></div>
+          <h3>Vote Encryption</h3>
+          <p>Every vote is encrypted from the moment it is cast until it is counted, ensuring complete privacy and security throughout the process.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon"><i class="fas fa-chart-line"></i></div>
+          <h3>Real-Time Results</h3>
+          <p>Live tracking of student council election results with interactive charts and progress bars that update in real-time.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+          <h3>Mobile Friendly</h3>
+          <p>Fully responsive interface that works seamlessly across desktop, tablet, and mobile devices for all UMMA students.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon"><i class="fas fa-robot"></i></div>
+          <h3>Fraud Prevention</h3>
+          <p>Advanced detection prevents duplicate voting and identity fraud, ensuring fair and credible student elections.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon"><i class="fas fa-file-invoice"></i></div>
+          <h3>Audit Trail</h3>
+          <p>Complete, tamper-proof audit logs track every action in the system, ensuring full transparency and accountability.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <h2>How the Voting Process Works</h2>
+        <p>Simple, secure, and straightforward steps for UMMA students</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Create Account</h3>
+          <p>Register with your UMMA student ID and personal details to create your secure voter account.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Verify Identity</h3>
+          <p>Complete the verification process to confirm your UMMA student status and eligibility.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Cast Your Vote</h3>
+          <p>Review student council candidates and cast your vote securely with a single click.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>View Results</h3>
+          <p>Track real-time election results and verify that your student vote was counted.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="section benefits" id="benefits">
+    <div class="container">
+      <div class="section-header">
+        <h2>Benefits of Electronic Student Voting</h2>
+        <p>Transforming campus democracy for the digital age</p>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-item">
+          <i class="fas fa-check-circle"></i>
+          <h3>Increased Participation</h3>
+          <p>Make student voting accessible from anywhere, reducing barriers and increasing overall student engagement in campus governance.</p>
+        </div>
+        <div class="benefit-item">
+          <i class="fas fa-ban"></i>
+          <h3>Eliminates Fraud</h3>
+          <p>Advanced security measures prevent duplicate voting, impersonation, and tampering with student election results.</p>
+        </div>
+        <div class="benefit-item">
+          <i class="fas fa-tachometer-alt"></i>
+          <h3>Instant Results</h3>
+          <p>Eliminate lengthy manual counting processes with automated tallying and real-time result publication.</p>
+        </div>
+        <div class="benefit-item">
+          <i class="fas fa-tree"></i>
+          <h3>Environmentally Friendly</h3>
+          <p>Reduce paper waste associated with traditional paper-based student council elections.</p>
+        </div>
+        <div class="benefit-item">
+          <i class="fas fa-dollar-sign"></i>
+          <h3>Cost Effective</h3>
+          <p>Significantly reduce the costs associated with printing ballot papers and logistics for campus elections.</p>
+        </div>
+        <div class="benefit-item">
+          <i class="fas fa-universal-access"></i>
+          <h3>Accessibility</h3>
+          <p>Ensure that all UMMA students, including those with disabilities, can vote independently with accessible interface options.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>UMMA University</h3>
+          <p>A secure electronic student voting system designed to enhance electoral integrity and promote student participation in campus governance at Umma University.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="#about"><i class="fas fa-chevron-right"></i> About</a></li>
+            <li><a href="#features"><i class="fas fa-chevron-right"></i> Features</a></li>
+            <li><a href="login.html"><i class="fas fa-chevron-right"></i> Login</a></li>
+            <li><a href="signup.html"><i class="fas fa-chevron-right"></i> Register</a></li>
+            <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Student Links</h3>
+          <ul>
+            <li><a href="dashboard.html"><i class="fas fa-chevron-right"></i> Dashboard</a></li>
+            <li><a href="voting.html"><i class="fas fa-chevron-right"></i> Vote Now</a></li>
+            <li><a href="results.html"><i class="fas fa-chevron-right"></i> Results</a></li>
+            <li><a href="profile.html"><i class="fas fa-chevron-right"></i> My Profile</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact UMMA</h3>
+          <ul class="footer-contact">
+            <li><i class="fas fa-map-marker-alt"></i> Namanga Road, Kajiado County, P.O. Box 713-01100, Kajiado, Kenya</li>
+            <li><i class="fas fa-envelope"></i> info@umma.ac.ke</li>
+            <li><i class="fas fa-phone"></i> +254 746 790 207</li>
+            <li><i class="fas fa-clock"></i> Mon - Fri: 8:00 AM - 5:00 PM</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Umma University Student Electoral System. All rights reserved.</p>
+        <p><i class="fas fa-graduation-cap"></i> Fostering Knowledge and Innovation</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
